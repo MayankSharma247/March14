@@ -2,6 +2,7 @@ pipeline {
     agent any
     environment {
         GIT_REPO = 'https://github.com/MayankSharma247/March14.git'
+        EMAIL_RECIPIENTS = 'Msharma5518@conestogac.on.ca'  // Replace with your email
     }
     stages {
         stage('Checkout') {
@@ -26,6 +27,20 @@ pipeline {
         }
     }
     post {
+        success {
+            emailext (
+                to: "${EMAIL_RECIPIENTS}",
+                subject: "Jenkins Build Success: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: "The build for ${env.JOB_NAME} #${env.BUILD_NUMBER} was successful."
+            )
+        }
+        failure {
+            emailext (
+                to: "${EMAIL_RECIPIENTS}",
+                subject: "Jenkins Build Failure: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: "The build for ${env.JOB_NAME} #${env.BUILD_NUMBER} has failed. Please check the Jenkins logs for more details."
+            )
+        }
         always {
             echo 'Notification sent!'
         }
