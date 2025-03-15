@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         GIT_REPO = 'https://github.com/MayankSharma247/March14.git'
-        EMAIL_RECIPIENTS = 'Msharma5518@conestogac.on.ca'  // Replace with your email
+        EMAIL_RECIPIENTS = 'mayanksharma247@gmail.com'  // Replace with your email
     }
     stages {
         stage('Checkout') {
