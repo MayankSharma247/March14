@@ -42,7 +42,7 @@ pipeline {
             )
         }
         always {
-            echo 'Notification sent!'
+            echo 'Application running successfully!'
         }
     }
 }
